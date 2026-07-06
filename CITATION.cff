@@ -1,0 +1,16 @@
+cff-version: 1.0.0
+message: "If you use Q2NSViz in your research, please cite the reference paper:"
+title: "Q2NSViz"
+type: software
+
+authors:
+  - family-names: Mazza
+    given-names: Francesco
+  - family-names: Caleffi
+    given-names: Marcello
+  - family-names: Cacciapuoti
+    given-names: Angela Sara
+
+repository-code: "https://github.com/QuantumInternet-it/q2nsviz"
+license: "MIT"
+url: "https://github.com/QuantumInternet-it/q2nsviz"
