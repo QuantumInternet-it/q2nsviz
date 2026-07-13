@@ -14,7 +14,7 @@ from helpers import make_two_node_events
 
 from q2nsviz import EventFileParser, SimulationStateManager
 
-_EXAMPLE_DIR = pathlib.Path(__file__).parent.parent / "example_traces"
+_EXAMPLE_DIR = pathlib.Path(__file__).parent.parent / "q2nsviz" / "example_traces"
 
 # ---------------------------------------------------------------------------
 # Fixtures

@@ -3,7 +3,7 @@ include README.md
 include CITATION.cff
 include requirements.txt
 recursive-include q2nsviz/ui/assets *.png
-recursive-include example_traces *.json
+recursive-include q2nsviz/example_traces *.json
 # The whole suite, so the sdist's test/ dir is runnable (conftest.py + helpers.py
 # are not picked up by setuptools' default sdist heuristics).
 recursive-include test *.py

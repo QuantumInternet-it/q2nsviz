@@ -40,12 +40,8 @@ q2nsviz = "q2nsviz.cli:main"
 packages = ["q2nsviz", "q2nsviz.ui"]
 
 [tool.setuptools.package-data]
+"q2nsviz" = ["example_traces/*.json"]
 "q2nsviz.ui" = ["assets/*.png"]
-
-# Bundled example traces, installed to <prefix>/share/q2nsviz/example_traces
-# so the Load dialog can default there for installed (non-clone) usage.
-[tool.setuptools.data-files]
-"share/q2nsviz/example_traces" = ["example_traces/*.json"]
 
 # `ruff check` deliberately does not auto-fix: the pre-commit hook passes --fix
 # explicitly, so running the linter by hand never rewrites the working tree.

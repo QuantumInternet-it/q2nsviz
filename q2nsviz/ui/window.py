@@ -9,6 +9,7 @@ import bisect
 import logging
 import os
 import sys
+from importlib import resources
 
 from PyQt6.QtCore import QSize, Qt, QTimer
 from PyQt6.QtGui import QColor, QFontDatabase, QIcon, QKeySequence, QPainter, QPixmap, QShortcut
@@ -37,20 +38,17 @@ logger = logging.getLogger(__name__)
 
 
 def _example_traces_dir() -> str:
-    """Locate the bundled example traces.
+    """Locate the bundled example traces, which ship as package data.
 
-    Prefers the repository copy (when running from a clone); falls back to
-    the installed copy under ``<prefix>/share/q2nsviz/example_traces``.
-    Returns an empty string when neither exists.
+    Empty string when they do not resolve to a real directory, as a non-filesystem
+    import (a zipapp) would.
     """
-    # <repo>/q2nsviz/ui/window.py -> <repo>/example_traces
-    repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    repo_dir = os.path.join(repo_root, "example_traces")
-    if os.path.isdir(repo_dir):
-        return repo_dir
-    installed_dir = os.path.join(sys.prefix, "share", "q2nsviz", "example_traces")
-    if os.path.isdir(installed_dir):
-        return installed_dir
+    try:
+        traces = resources.files("q2nsviz") / "example_traces"
+        if traces.is_dir():
+            return str(traces)
+    except (ModuleNotFoundError, OSError):
+        pass
     return ""
 
 

@@ -143,7 +143,7 @@ EXCLUDE_PATTERNS       = */__pycache__/* \
                          */docs/* \
                          */.doxygen-build/*
 EXCLUDE_SYMBOLS        = _* *::_*
-EXAMPLE_PATH           = example_traces
+EXAMPLE_PATH           = q2nsviz/example_traces
 EXAMPLE_PATTERNS       = *.json
 EXAMPLE_RECURSIVE      = NO
 IMAGE_PATH             =

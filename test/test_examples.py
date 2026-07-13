@@ -15,7 +15,8 @@ import pytest
 
 from q2nsviz import EventFileParser, SimulationStateManager
 
-_EXAMPLE_DIR = pathlib.Path(__file__).parent.parent / "example_traces"
+_REPO_ROOT = pathlib.Path(__file__).parent.parent
+_EXAMPLE_DIR = _REPO_ROOT / "q2nsviz" / "example_traces"
 _EXAMPLE_FILES = sorted(_EXAMPLE_DIR.glob("*.json"))
 
 
@@ -25,9 +26,7 @@ def test_engine_import_pulls_in_no_qt():
     since the GUI tests import Qt into this one).
     """
     code = "import q2nsviz, sys; print([m for m in sys.modules if 'PyQt' in m])"
-    out = subprocess.run(
-        [sys.executable, "-c", code], capture_output=True, text=True, check=True, cwd=_EXAMPLE_DIR.parent
-    )
+    out = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True, check=True, cwd=_REPO_ROOT)
     assert out.stdout.strip() == "[]", f"importing q2nsviz loaded Qt: {out.stdout}"
 
 

@@ -52,7 +52,7 @@ Once installed, launch the viewer with the `q2nsviz` command:
 q2nsviz
 
 # Load a trace file on startup
-q2nsviz example_traces/q2nsviz-teleportation-example.json
+q2nsviz q2nsviz/example_traces/q2nsviz-teleportation-example.json
 
 # Set log verbosity (DEBUG, INFO, WARNING, ERROR, CRITICAL; default: WARNING)
 q2nsviz --log-level DEBUG
@@ -61,11 +61,11 @@ q2nsviz --log-level DEBUG
 > [!TIP]
 > Running from a clone without installing? Use `python -m q2nsviz` in place of `q2nsviz` with the same arguments.
 
-Use the **Load Simulation** button in the top bar to open a trace at any time. The file dialog opens in the bundled `example_traces/` folder by default — the repository copy when running from a clone, or the copy installed under `<prefix>/share/q2nsviz/example_traces` otherwise.
+Use the **Load Simulation** button in the top bar to open a trace at any time. The file dialog opens in the bundled example traces by default. They ship as package data, so the same folder is found whether you run from a clone, an editable install, or a wheel.
 
 ## Example Traces
 
-The `example_traces/` directory contains ready-to-load traces:
+The `q2nsviz/example_traces/` directory contains ready-to-load traces:
 
 | File | Protocol |
 |------|----------|
@@ -164,7 +164,7 @@ The replay engine (`q2nsviz/logic.py`) is Qt-free and can be used directly from 
 from q2nsviz import SimulationStateManager
 
 sm = SimulationStateManager()
-sm.load_events("example_traces/q2nsviz-repeater-swap-example.json")
+sm.load_events("q2nsviz/example_traces/q2nsviz-repeater-swap-example.json")
 
 snap = sm.snapshot_at(4000)            # state at t = 4 µs, mid-BSM
 print(sorted(snap.live_qubit_labels))  # ['q_a', 'q_b', 'rep_a', 'rep_b']
@@ -217,6 +217,7 @@ q2nsviz/
   __main__.py             # `python -m q2nsviz` entry point
   cli.py                  # Argument parsing; backs the `q2nsviz` console script
   logic.py                # Trace parser and quantum state replay engine
+  example_traces/         # Sample JSON traces, shipped as package data
   ui/
     window.py             # QMainWindow, playback controller, and main() launcher
     canvas.py             # Network topology renderer (QPainter)
@@ -225,7 +226,6 @@ q2nsviz/
     theme.py              # Shared colors and fonts
 test/                     # Pytest suite: parser, state engine, charts, examples
 doc/                      # Doxygen mainpage, API-doc sources, README assets
-example_traces/           # Sample JSON traces
 pyproject.toml            # Project metadata, ruff and pytest configuration
 requirements.txt          # Runtime dependencies
 MANIFEST.in               # Source-distribution packaging rules
