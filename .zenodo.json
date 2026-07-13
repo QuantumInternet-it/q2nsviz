@@ -1,0 +1,50 @@
+{
+  "title": "Q2NSViz: Quantum Network Trace Visualizer",
+  "upload_type": "software",
+  "version": "0.1.0",
+  "license": "mit-license",
+  "description": "<p><strong>Q2NSViz</strong> is a desktop companion for <a href=\"https://github.com/QuantumInternet-it/q2ns\">Q2NS</a> that replays JSON trace files into an interactive, time-stepped view of quantum network protocols. It jointly renders physical- and entanglement-connectivity graphs and supports entangled-state manipulations, enabling an intuitive inspection of entanglement dynamics and protocol behavior.</p>",
+  "creators": [
+    {
+      "name": "Mazza, Francesco",
+      "affiliation": "University of Naples Federico II",
+      "orcid": "0009-0000-1662-5695"
+    },
+    {
+      "name": "Caleffi, Marcello",
+      "affiliation": "University of Naples Federico II",
+      "orcid": "0000-0001-5726-5489"
+    },
+    {
+      "name": "Cacciapuoti, Angela Sara",
+      "affiliation": "University of Naples Federico II",
+      "orcid": "0000-0002-0477-2927"
+    }
+  ],
+  "keywords": [
+    "quantum networks",
+    "quantum internet",
+    "network simulation",
+    "visualization",
+    "ns-3",
+    "Q2NS"
+  ],
+  "related_identifiers": [
+    {
+      "scheme": "doi",
+      "identifier": "10.5281/zenodo.19386365",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "grants": [
+    {
+      "id": "101169850"
+    }
+  ],
+  "communities": [
+    {
+      "identifier": "qnattynet"
+    }
+  ]
+}
