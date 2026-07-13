@@ -1,8 +1,21 @@
-cff-version: 1.0.0
-message: "If you use Q2NSViz in your research, please cite the reference paper:"
-title: "Q2NSViz"
+cff-version: 1.2.0
+message: "If you use Q2NSViz in your research, please cite the Q2NSViz reference paper (preferred-citation below). You may additionally cite this software, the Q2NS reference paper, and the Q2NS simulator release (see references)."
+title: "Q2NSViz: Quantum Network Trace Visualizer"
+abstract: "Q2NSViz is a desktop companion for the Q2NS quantum network simulator that replays JSON trace files and renders an interactive, time-stepped view of quantum network protocols, entanglement dynamics, and classical/quantum traffic."
 type: software
-
+version: "0.1.0"
+date-released: "2026-07-13"
+license: MIT
+doi: "10.5281/zenodo.21216676"
+repository-code: "https://github.com/QuantumInternet-it/q2nsviz"
+url: "https://github.com/QuantumInternet-it/q2nsviz"
+keywords:
+  - quantum networks
+  - quantum internet
+  - network simulation
+  - visualization
+  - ns-3
+  - Q2NS
 authors:
   - family-names: Mazza
     given-names: Francesco
@@ -11,6 +24,51 @@ authors:
   - family-names: Cacciapuoti
     given-names: Angela Sara
 
-repository-code: "https://github.com/QuantumInternet-it/q2nsviz"
-license: "MIT"
-url: "https://github.com/QuantumInternet-it/q2nsviz"
+# Preferred citation: the Q2NSViz reference paper (submitted).
+preferred-citation:
+  type: article
+  title: "Q2NSViz: An Open-source Standalone Visualizer for Quantum Network Simulations"
+  authors:
+    - family-names: Mazza
+      given-names: Francesco
+    - family-names: Caleffi
+      given-names: Marcello
+    - family-names: Cacciapuoti
+      given-names: Angela Sara
+  year: 2026
+  status: submitted
+
+# Additional references: the Q2NS reference paper and simulator release.
+references:
+  - type: article
+    title: "An Extensible Quantum Network Simulator Built on ns-3: Q2NS Design and Evaluation"
+    authors:
+      - family-names: Pearson
+        given-names: Adam
+      - family-names: Mazza
+        given-names: Francesco
+      - family-names: Caleffi
+        given-names: Marcello
+      - family-names: Cacciapuoti
+        given-names: Angela Sara
+    journal: "Computer Networks"
+    publisher:
+      name: "Elsevier"
+    year: 2026
+    doi: "10.1016/j.comnet.2026.112292"
+    url: "https://doi.org/10.1016/j.comnet.2026.112292"
+  - type: software
+    title: "Q2NS: A Modular Framework for Quantum Network Simulation in ns-3"
+    authors:
+      - family-names: Pearson
+        given-names: Adam
+      - family-names: Mazza
+        given-names: Francesco
+      - family-names: Caleffi
+        given-names: Marcello
+      - family-names: Cacciapuoti
+        given-names: Angela Sara
+    repository-code: "https://github.com/QuantumInternet-it/q2ns"
+    doi: "10.5281/zenodo.19386365"
+    url: "https://zenodo.org/records/19386365"
+    year: 2026

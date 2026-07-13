@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "q2nsviz"
+version = "0.1.0"
+description = "Desktop trace visualizer for Q2NS quantum network simulations"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+authors = [
+    {name = "Francesco Mazza"},
+    {name = "Marcello Caleffi"},
+    {name = "Angela Sara Cacciapuoti"},
+]
+keywords = ["quantum networks", "quantum internet", "network simulation", "visualization", "ns-3", "Q2NS"]
+dependencies = [
+    "PyQt6>=6.6.0",
+    "matplotlib>=3.7.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.0",
+    "pytest-qt>=4.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/QuantumInternet-it/q2nsviz"
+Repository = "https://github.com/QuantumInternet-it/q2nsviz"
+
+[project.scripts]
+q2nsviz = "q2nsviz.cli:main"
+
+# Listed explicitly so setuptools does not attempt auto-discovery across
+# test/ and doc/.
+[tool.setuptools]
+packages = ["q2nsviz", "q2nsviz.ui"]
+
+[tool.setuptools.package-data]
+"q2nsviz.ui" = ["assets/*.png"]
+
+# Bundled example traces, installed to <prefix>/share/q2nsviz/example_traces
+# so the Load dialog can default there for installed (non-clone) usage.
+[tool.setuptools.data-files]
+"share/q2nsviz/example_traces" = ["example_traces/*.json"]
+
+# `ruff check` deliberately does not auto-fix: the pre-commit hook passes --fix
+# explicitly, so running the linter by hand never rewrites the working tree.
+[tool.ruff]
+line-length = 115
+target-version = "py312"
+
+[tool.ruff.lint]
+# Docstring layout only, not content: the D4xx content rules conflict with the
+# Doxygen @param/@returns style, and D205 would force a blank line into the
+# wrapped single-sentence summaries used across the test suite.
+select = ["E", "F", "W", "I", "UP", "B", "C4", "SIM", "RUF", "N", "D200", "D201", "D202", "D209", "D210"]
+
+[tool.ruff.lint.per-file-ignores]
+"q2nsviz/ui/*.py" = ["N802", "N803", "N806"]  # Qt camelCase methods/args; UPPER_CASE layout constants in functions
+"test/*.py" = ["S101"]  # assert is idiomatic in pytest
+"doc/*.py" = ["D"]  # Doxygen mainpage, not a Python docstring
+
+[tool.ruff.lint.isort]
+known-first-party = ["q2nsviz"]
+split-on-trailing-comma = false
+
+[tool.ruff.format]
+quote-style = "double"
+skip-magic-trailing-comma = true
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+pythonpath = [".", "test"]

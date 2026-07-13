@@ -1,0 +1,60 @@
+{"type":"traceText","t_ns":0,"text":"Repeater-Centric Entanglement Swap"}
+{"type":"createNode","t_ns":0,"label":"Alice","x":10,"y":50}
+{"type":"createNode","t_ns":0,"label":"Src1","x":30,"y":30}
+{"type":"createNode","t_ns":0,"label":"Repeater","x":50,"y":50}
+{"type":"createNode","t_ns":0,"label":"Src2","x":70,"y":30}
+{"type":"createNode","t_ns":0,"label":"Bob","x":90,"y":50}
+{"type":"createChannel","t_ns":0,"from":"Src1","to":"Alice","kind":"quantum"}
+{"type":"createChannel","t_ns":0,"from":"Src1","to":"Repeater","kind":"quantum"}
+{"type":"createChannel","t_ns":0,"from":"Src2","to":"Repeater","kind":"quantum"}
+{"type":"createChannel","t_ns":0,"from":"Src2","to":"Bob","kind":"quantum"}
+{"type":"createChannel","t_ns":0,"from":"Alice","to":"Repeater","kind":"classical"}
+{"type":"createChannel","t_ns":0,"from":"Bob","to":"Repeater","kind":"classical"}
+{"type":"createChannel","t_ns":0,"from":"Repeater","to":"Bob","kind":"classical"}
+{"type":"traceText","t_ns":1000,"text":"Phase 1: Src1 and Src2 generate Bell pairs"}
+{"type":"traceText","t_ns":1000,"node":"Src1","text":"Generating Bell pair (q_a, rep_a)"}
+{"type":"traceText","t_ns":1000,"node":"Src2","text":"Generating Bell pair (rep_b, q_b)"}
+{"type":"createQubit","t_ns":1000,"node":"Src1","label":"q_a"}
+{"type":"createQubit","t_ns":1000,"node":"Src1","label":"rep_a"}
+{"type":"createQubit","t_ns":1000,"node":"Src2","label":"rep_b"}
+{"type":"createQubit","t_ns":1000,"node":"Src2","label":"q_b"}
+{"type":"entangle","t_ns":1300,"duration_ns":300,"bits":["q_a","rep_a"]}
+{"type":"entangle","t_ns":1300,"duration_ns":300,"bits":["rep_b","q_b"]}
+{"type":"traceText","t_ns":1300,"node":"Src1","text":"|Phi+>_S1 ready (q_a, rep_a)"}
+{"type":"traceText","t_ns":1300,"node":"Src2","text":"|Phi+>_S2 ready (rep_b, q_b)"}
+{"type":"traceText","t_ns":1400,"text":"Phase 2: distributing qubits to endpoints and repeater"}
+{"type":"sendQubit","t0_ns":1400,"t1_ns":1410,"bit":"q_a","from":"Src1","to":"Alice"}
+{"type":"sendQubit","t0_ns":1400,"t1_ns":1410,"bit":"rep_a","from":"Src1","to":"Repeater"}
+{"type":"sendQubit","t0_ns":1400,"t1_ns":1410,"bit":"rep_b","from":"Src2","to":"Repeater"}
+{"type":"sendQubit","t0_ns":1400,"t1_ns":1410,"bit":"q_b","from":"Src2","to":"Bob"}
+{"type":"traceText","t_ns":1400,"node":"Src1","text":"q_a -> Alice, rep_a -> Repeater"}
+{"type":"traceText","t_ns":1400,"node":"Src2","text":"rep_b -> Repeater, q_b -> Bob"}
+{"type":"traceText","t_ns":1410,"node":"Alice","text":"q_a arrived"}
+{"type":"sendPacket","t0_ns":1410,"t1_ns":1420,"from":"Alice","to":"Repeater","label":"ACK: q_a received","protocol":"udp"}
+{"type":"traceText","t_ns":1410,"node":"Repeater","text":"rep_a arrived (1/2)"}
+{"type":"traceText","t_ns":1410,"node":"Repeater","text":"rep_b arrived (2/2) - ready for BSM"}
+{"type":"traceText","t_ns":1410,"node":"Bob","text":"q_b arrived - awaiting BSM corrections"}
+{"type":"sendPacket","t0_ns":1410,"t1_ns":1420,"from":"Bob","to":"Repeater","label":"ACK: q_b received","protocol":"udp"}
+{"type":"traceText","t_ns":3900,"node":"Repeater","text":"ACK received (1/2)"}
+{"type":"traceText","t_ns":3900,"node":"Repeater","text":"ACK received (2/2)"}
+{"type":"traceText","t_ns":3900,"text":"Repeater performs BSM on rep_a and rep_b"}
+{"type":"traceText","t_ns":3900,"node":"Repeater","text":"BSM: measuring rep_a and rep_b"}
+{"type":"measure","t_ns":4200,"duration_ns":300,"bit":"rep_a","base":"Bell"}
+{"type":"measure","t_ns":4200,"duration_ns":300,"bit":"rep_b","base":"Bell"}
+{"type":"entangle","t_ns":4200,"bits":["q_a","q_b"]}
+{"type":"removeQubit","t_ns":4200,"bit":"rep_a","reason":"discarded"}
+{"type":"removeQubit","t_ns":4200,"bit":"rep_b","reason":"discarded"}
+{"type":"createCbit","t_ns":4200,"node":"Repeater","label":"m1"}
+{"type":"createCbit","t_ns":4200,"node":"Repeater","label":"m2"}
+{"type":"sendCbit","t0_ns":4200,"t1_ns":4210,"bit":"m1","from":"Repeater","to":"Bob"}
+{"type":"sendCbit","t0_ns":4200,"t1_ns":4210,"bit":"m2","from":"Repeater","to":"Bob"}
+{"type":"sendPacket","t0_ns":4200,"t1_ns":4210,"from":"Repeater","to":"Bob","label":"BSM corrections: m1=1 m2=1","protocol":"udp"}
+{"type":"traceText","t_ns":4200,"node":"Repeater","text":"Corrections m1=1 m2=1 sent to Bob"}
+{"type":"traceText","t_ns":6770,"text":"Bob receives corrections m1=1 m2=1"}
+{"type":"traceText","t_ns":6770,"node":"Bob","text":"Corrections received: m1=1 m2=1"}
+{"type":"traceText","t_ns":6770,"text":"Bob applies Pauli corrections X^m2=1 Z^m1=1"}
+{"type":"traceText","t_ns":6770,"node":"Bob","text":"X correction applied (m2=1)"}
+{"type":"traceText","t_ns":6770,"node":"Bob","text":"Z correction applied (m1=1)"}
+{"type":"removeCbit","t_ns":6770,"bit":"m1"}
+{"type":"removeCbit","t_ns":6770,"bit":"m2"}
+{"type":"traceText","t_ns":6770,"text":"End-to-end entanglement established between Alice and Bob"}
